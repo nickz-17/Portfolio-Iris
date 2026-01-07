@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-iris-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "serve": "npx http-server _site -p 8080"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  }
+}
