@@ -7,14 +7,12 @@ title: Home
   <p>Klik op een project voor details.</p>
 </section>
 
-<section class="grid">
-  {% for project in collections.projects | reverse %}
-  <article class="card">
-    <a href="{{ project.url }}">
-      <img src="{{ project.data.cover }}" alt="{{ project.data.title }}" loading="lazy">
-      <h3>{{ project.data.title }}</h3>
-      {% if project.data.tags %}<p class="tags">{{ project.data.tags | join(", ") }}</p>{% endif %}
-    </a>
-  </article>
-  {% endfor %}
-</section>
+<!-- Menu met knoppen -->
+<nav class="menu" aria-label="Hoofd navigatie">
+  <a class="btn" href="/about/">Over mij</a>
+  <a class="btn" href="/work/">Opdrachten</a>
+  <a class="btn" href="/paintings/">Schilderijen</a>
+  <a class="btn" href="/design/">Vormgeefwerk</a>
+  <a class="btn" href="/drawings/">Tekeningen</a>
+  <a class="btn" href="/contact/">Contact</a>
+</nav>

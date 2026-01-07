@@ -1,17 +1,93 @@
 :root{
-  --bg:#0b0b0b;
-  --text:#eee;
-  --accent:#ff007f;
+  --bg:#f9d7df; /* zacht roze achtergrond */
+  --text:#2b1750; /* donker paarse tekst */
+  --accent:#b996ff; /* zachte paars voor knoppen */
+  --accent-hover:#9d78f0;
 }
 
 *{box-sizing:border-box}
-body{font-family:Inter, Arial, sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;line-height:1.4}
-.site-header{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.06)}
+html,body{height:100%}
+body{
+  font-family: 'Inter', Arial, sans-serif;
+  margin:0;padding:0;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.4;
+}
+
+/* header / site nav */
+.site-header{padding:18px 20px;border-bottom:0;position:relative;z-index:3}
 .site-header nav a{color:var(--text);margin-right:14px;text-decoration:none}
-.hero{padding:48px 20px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:20px;max-width:1100px;margin:0 auto}
-.card{background:rgba(255,255,255,.02);border-radius:8px;overflow:hidden}
-.card img{width:100%;height:220px;object-fit:cover;display:block}
-.card h3{margin:10px;padding:0 10px}
-.tags{color:#9ec}
-.site-footer{padding:20px;text-align:center;border-top:1px solid rgba(255,255,255,.04);margin-top:40px}
+
+.hero{
+  text-align:center;
+  padding:44px 20px 8px;
+}
+.hero h1{
+  font-size:3rem;
+  margin:0 0 8px;
+  letter-spacing:2px;
+  color:var(--text);
+}
+.hero p{margin:0;color:#5b3f7a}
+
+/* ---------- Layout voor menu / knoppen ---------- */
+.menu {
+  width: 100%;
+  max-width: 980px;        /* houd menu netjes op grote schermen */
+  margin: 32px auto;      /* centreer */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr)); /* 2 kolommen op desktop */
+  gap: 22px;               /* afstand tussen knoppen */
+  align-items: center;
+  justify-items: center;
+  padding: 0 20px 80px;
+}
+
+/* knop-stijl */
+.menu .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent); /* zachte paarstint */
+  padding: 18px 36px;
+  min-width: 240px;
+  border-radius: 28px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform .14s ease, box-shadow .14s ease, background .14s;
+}
+
+/* hover / focus states */
+.menu .btn:hover,
+.menu .btn:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  background: var(--accent-hover); /* iets donkerder op hover */
+  outline: none;
+}
+
+/* volledige breedte op mobiel: 1 kolom */
+@media (max-width: 680px) {
+  .menu {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .menu .btn { min-width: auto; width: 100%; max-width: 480px; }
+}
+
+/* Zorg dat belangrijke illustraties op z-index lager blijven,
+   en dat de menu boven de illustraties zichtbaar is */
+.menu, .hero {
+  position: relative;
+  z-index: 2;
+}
+
+/* Footer */
+.site-footer{padding:24px;text-align:center;border-top:1px solid rgba(0,0,0,.04);margin-top:40px;color:#6a4f8a}
+
+/* small helper: make links accessible */
+a:focus{outline:3px solid rgba(155,120,255,0.18);outline-offset:3px}
