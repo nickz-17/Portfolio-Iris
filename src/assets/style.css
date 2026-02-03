@@ -1,49 +1,66 @@
 :root{
-  --bg:#f9d7df; /* zacht roze achtergrond */
-  --text:#2b1750; /* donker paarse tekst */
-  --accent:#b996ff; /* zachte paars voor knoppen */
+  --bg:#f9d7df;
+  --text:#2b1750;
+  --accent:#b996ff;
   --accent-hover:#9d78f0;
 }
-
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
+*{box-sizing:border-box}html,body{height:100%}body{
   font-family: 'Inter', Arial, sans-serif;
   margin:0;padding:0;
   background:var(--bg);
   color:var(--text);
   line-height:1.4;
 }
-
-/* header / site nav */
-.site-header{padding:18px 20px;border-bottom:0;position:relative;z-index:3}
-.site-header nav a{color:var(--text);margin-right:14px;text-decoration:none}
-
+/* Hero */
 .hero{
   text-align:center;
   padding:44px 20px 8px;
+  position:relative;
+  z-index:3;
 }
-.hero h1{
-  font-size:3rem;
-  margin:0 0 8px;
-  letter-spacing:2px;
-  color:var(--text);
+.hero h1{ font-size:3rem; margin:0 0 8px; letter-spacing:2px; color:var(--text); }
+.hero p{ margin:0; color:#5b3f7a }
+/* Artwork wrappers - illustraties positioneren */
+.artwork { position: relative; width:100%; height:0; pointer-events:none; }
+/* individuele art items */
+.art {
+  position: absolute;
+  z-index:1; /* onder de menu knoppen */
+  pointer-events: none;
+  user-select: none;
+  max-width: 48vw;
+  height: auto;
 }
-.hero p{margin:0;color:#5b3f7a}
-
+/* left person */
+.art-left {
+  left: 18px;
+  top: 36px;
+  width: 220px;            /* tuneer naar jouw afbeelding */
+  transform: translateY(0);
+}
+/* dog sketch - centraal maar onder menu zodat knoppen erboven kunnen liggen */
+.art-dog {
+  left: 8%;
+  top: 220px;
+  width: 70%;
+  opacity: 1;
+  transform: translateY(0);
+  mix-blend-mode: normal;
+}
 /* ---------- Layout voor menu / knoppen ---------- */
 .menu {
   width: 100%;
-  max-width: 980px;        /* houd menu netjes op grote schermen */
-  margin: 32px auto;      /* centreer */
+  max-width: 980px;
+  margin: 32px auto 120px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr)); /* 2 kolommen op desktop */
-  gap: 22px;               /* afstand tussen knoppen */
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 22px;
   align-items: center;
   justify-items: center;
-  padding: 0 20px 80px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2; /* boven artwork */
 }
-
 /* knop-stijl */
 .menu .btn {
   display: inline-flex;
@@ -51,7 +68,7 @@ body{
   justify-content: center;
   text-decoration: none;
   color: #fff;
-  background: var(--accent); /* zachte paarstint */
+  background: var(--accent);
   padding: 18px 36px;
   min-width: 240px;
   border-radius: 28px;
@@ -60,34 +77,36 @@ body{
   box-shadow: 0 6px 14px rgba(0,0,0,0.08);
   transition: transform .14s ease, box-shadow .14s ease, background .14s;
 }
-
 /* hover / focus states */
 .menu .btn:hover,
 .menu .btn:focus {
   transform: translateY(-3px);
   box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-  background: var(--accent-hover); /* iets donkerder op hover */
+  background: var(--accent-hover);
   outline: none;
 }
-
-/* volledige breedte op mobiel: 1 kolom */
+/* specifieke knop-positie aanpassingen zodat ze meer lijken op jouw mockup */
+.btn--about    { transform: translateY( -8px ); }   /* over mij hoger */
+.btn--work     { transform: translate(40px, 24px); } /* opdrachten rechts iets naar beneden */
+.btn--paintings{ transform: translateY( 24px ); }   /* schilderijen net onder middel */
+.btn--drawings { transform: translate(36px, 48px); } /* tekeningen rechts onder */
+.btn--contact  { transform: translateY( 120px ); }  /* contact laag op pagina */
+/* Responsive: mobiel één kolom en geen offsets */
 @media (max-width: 680px) {
+  .art-left { display:none; } /* verberg persoon op kleine schermen indien te veel ruimte */
+  .art-dog  { left: 6%; top: 180px; width: 88%; opacity:0.95; }
   .menu {
     grid-template-columns: 1fr;
     gap: 18px;
+    padding-top: 120px; /* ruimte voor de hond illustratie */
   }
-  .menu .btn { min-width: auto; width: 100%; max-width: 480px; }
+  .menu .btn { width: 100%; max-width: 520px; min-width: auto; }
+  /* reset transforms voor mobiel */
+  .btn--about, .btn--work, .btn--paintings, .btn--drawings, .btn--contact {
+    transform: none;
+  }
 }
-
-/* Zorg dat belangrijke illustraties op z-index lager blijven,
-   en dat de menu boven de illustraties zichtbaar is */
-.menu, .hero {
-  position: relative;
-  z-index: 2;
-}
-
 /* Footer */
 .site-footer{padding:24px;text-align:center;border-top:1px solid rgba(0,0,0,.04);margin-top:40px;color:#6a4f8a}
-
-/* small helper: make links accessible */
+/* accessibility */
 a:focus{outline:3px solid rgba(155,120,255,0.18);outline-offset:3px}
