@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-</head>
-<body>
-    <h1>Welcome to My Portfolio!</h1>
-    <img src="irisperson.png" alt="Iris Person" />
-    <img src="dogssketch.png" alt="Dogs Sketch" />
-    <p>This is my portfolio where you will find my projects and works.</p>
-</body>
-</html>
+---
+layout: layouts/base.njk
+title: Home
+---
+<section class="hero">
+  <h1>Iris — Portfolio</h1>
+  <p>Klik op een project voor details.</p>
+</section>
+
+<!-- achtergrond-illustraties -->
+<div class="artwork">
+  <img class="art art-left" src="/assets/images/irisperson.png" alt="Iris illustration (persoon)">
+  <img class="art art-dog" src="/assets/images/dogssketch.png" alt="Hond tekening achtergrond">
+</div>
+
+<nav class="menu" aria-label="Hoofd navigatie">
+  <a class="btn btn--about" href="/about/">Over mij</a>
+  <a class="btn btn--work" href="/work/">Opdrachten</a>
+  <a class="btn btn--paintings" href="/paintings/">Schilderijen</a>
+  <a class="btn btn--drawings" href="/drawings/">Tekeningen</a>
+  <a class="btn btn--contact" href="/contact/">Contact</a>
+</nav>
